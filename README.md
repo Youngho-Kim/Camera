@@ -1,0 +1,2 @@
+# Camera
+uses Camera

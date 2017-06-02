@@ -48,8 +48,8 @@ if(requestCode == 권한 요청한 플래그 값){
 ```    
 
   
-### 카메라 어플 만들기  
-
+### 카메라 어플 만들기  
+[전체코드보기](https://github.com/Youngho-Kim/Camera/blob/master/app/src/main/java/com/android/kwave/camera/CameraActivity.java)
 사진을 저장하기 위한 파일에 대한 권한을 획득하기 위한 설정
 Manifest에 아래 코드 넣기
 

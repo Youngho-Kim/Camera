@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
    private final int REQ_PERMISSION = 100;      // 갤러리가 호출했음을 알려주는 키값
-   private final int REQ1_PERMISSION = 101;      // 카메라가 호출했음을 알려주는 키값
 
     Button btnGallery, btnCamera;
     ImageView imageView;
@@ -85,17 +84,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this,"권한요청을 승인하셔야 앱을 사용할 수 있습니다.",Toast.LENGTH_SHORT).show();
             }
         }
-        else if(requestCode == REQ1_PERMISSION){      // 카메라에서 승인 요청 했음
-            // 3.1 사용자가 승인을 했음
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                init();
-            }
-            // 3.2 사용자가 거절했음
-            else{
-                Toast.makeText(this,"권한요청을 승인하셔야 앱을 사용할 수 있습니다.",Toast.LENGTH_SHORT).show();
-            }
-        }
+//        else if(requestCode == REQ1_PERMISSION){      // 카메라에서 승인 요청 했음
+//            // 3.1 사용자가 승인을 했음
+//            if(grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+//                    grantResults[1] == PackageManager.PERMISSION_GRANTED){
+//                init();
+//            }
+//            // 3.2 사용자가 거절했음
+//            else{
+//                Toast.makeText(this,"권한요청을 승인하셔야 앱을 사용할 수 있습니다.",Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
     }
 
@@ -115,8 +114,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                         // 사용할 갤러리를 선택하는 창의 제목 // 호출한 것을 알려주는 플래그 값
                 break;
             case R.id.btnCamera :
-                intent = new Intent(Intent.ACTION_CAMERA_BUTTON, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(Intent.createChooser(intent,"Camera"),REQ_PERMISSION);
+                intent = new Intent(getBaseContext(),CameraActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -132,10 +131,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case REQ_PERMISSION :
                     imageUri = data.getData();      // 갤러리에서 넘겨준 이미지를 받아서 이미지뷰에 넣어줌 - 이미지뷰를 세팅해줌
                     Log.i("Galery","imageUri=============================="+imageUri.getPath());
-                    imageView.setImageURI(imageUri);
-                    break;
-                case REQ1_PERMISSION :
-                    imageUri = data.getData();      // 갤러리에서 넘겨준 이미지를 받아서 이미지뷰에 넣어줌 - 이미지뷰를 세팅해줌
                     imageView.setImageURI(imageUri);
                     break;
             }
